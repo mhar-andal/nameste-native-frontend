@@ -10,14 +10,14 @@ export default class App extends React.Component {
   state = {};
 
   componentWillMount() {
-    axios.get('http://localhost:3000/test/test')
-    .then((response) => {
-      console.log('response', response);
-      const { name } = response.data
-      this.setState({
-        name
-      })
-    });
+    // axios.get('http://localhost:3000/test/test')
+    // .then((response) => {
+    //   console.log('response', response);
+    //   const { name } = response.data
+    //   this.setState({
+    //     name
+    //   })
+    // });
   }
   render() {
     return (
