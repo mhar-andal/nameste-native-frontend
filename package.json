@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "axios": "^0.17.1",
     "jest-expo": "23.0.0",
     "react-native-scripts": "1.8.1",
     "react-test-renderer": "16.0.0"
@@ -20,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "expo": "^23.0.4",
     "react": "16.0.0",
     "react-native": "0.50.3"
