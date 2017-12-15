@@ -1,5 +1,3 @@
-import { capture } from 'store/errors';
-
 // api middleware for redux to support promises
 export const apiMiddleware = () => {
   return next => (action) => {
@@ -35,7 +33,6 @@ export const errorMiddleware = () => {
       return next(action);
     } catch (err) {
       next({ error: err, banner: true, type: 'UNEXPECTED_ERROR' });
-      capture(err, 'Redux Error');
       throw err;
     }
   };
