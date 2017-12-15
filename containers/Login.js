@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Dimensions,
@@ -7,15 +8,22 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import axios from 'axios';
-import { isEmpty } from 'lodash';
+import { Link } from 'react-router-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class Login extends Component {
+import { signIn } from '../store/Account/actions';
+
+class Login extends Component {
+  static propTypes = {
+    signIn: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
 
     const { width, height } = Dimensions.get('window');
-
+    console.log('promise', Promise);
     this.state = {
       email: '',
       username: '',
@@ -43,14 +51,14 @@ export default class Login extends Component {
       firstName,
       lastName,
     } = this.state;
-
-    axios.post('http://localhost:3000/v1/users', {
-        email: email,
-        username: username,
-        password: password,
-        first_name: firstName,
-        last_name: lastName,
-    })
+    const account = {
+      email,
+      username,
+      password,
+      firstName,
+      lastName,
+    };
+    this.props.signIn(account)
     .then((response) => {
       this.setState({
         sessionId: response.data.id,
@@ -62,17 +70,13 @@ export default class Login extends Component {
     });
   }
 
-  renderErrors(errors) {
-    return (
-      <Text>Username has already been created</Text>
-    )
-  }
-
   renderLoginForm() {
-    const { errors, width } = this.state;
+    const { width } = this.state;
     return (
       <View style={styles.container}>
-        {isEmpty(errors) && this.renderErrors(errors)}
+        <Link to="/">
+          <Text>Back</Text>
+        </Link>
         <Text>Email</Text>
         <TextInput
           style={{ height: 30, width: width, borderColor: 'black', borderWidth: 1 }}
@@ -140,3 +144,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Object.assign({},
+    { signIn },
+  ), dispatch);
+}
+export default connect(null, mapDispatchToProps)(Login)

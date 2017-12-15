@@ -1,38 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import axios from 'axios';
+import { StyleSheet, View } from 'react-native';
+import { NativeRouter, Route } from 'react-router-native';
+import { Provider } from 'react-redux';
+import configureStore from './store/store';
 
-import Login from './containers/Login.js';
+import Homepage from './Homepage';
+import Login from './containers/Login';
 
-const DEFAULT_NAME = 'Somebody'
+const store = configureStore();
 
 export default class App extends React.Component {
-  state = {};
+   render() {
+     return (
+       <Provider store={store}>
+         <NativeRouter>
+           <View style={styles.container}>
+             <Route exact path="/" component={Homepage} />
+             <Route path="/login" component={Login} />
+          </View>
+         </NativeRouter>
+       </Provider>
+     );
+   }
+ }
 
-  componentWillMount() {
-    // axios.get('http://localhost:3000/test/test')
-    // .then((response) => {
-    //   console.log('response', response);
-    //   const { name } = response.data
-    //   this.setState({
-    //     name
-    //   })
-    // });
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Login />
-      </View>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ const styles = StyleSheet.create({
+   container: {
+     flex: 1,
+     // backgroundColor: '#fff',
+     alignItems: 'center',
+     justifyContent: 'center',
+   },
+ });

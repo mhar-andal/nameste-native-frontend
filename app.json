@@ -1,4 +1,6 @@
 {
+  "name": "nameste_native_frontend",
+  "displayName": "nameste",
   "expo": {
     "sdkVersion": "23.0.0"
   }
