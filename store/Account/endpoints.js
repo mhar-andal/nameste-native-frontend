@@ -8,7 +8,7 @@ export const signIn = (account) => {
     firstName,
     lastName,
   } = account;
-  return axios.post('http://localhost:3000/v1/users', {
+  return axios.post('/users', {
       email: email,
       username: username,
       password: password,

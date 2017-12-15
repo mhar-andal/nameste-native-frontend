@@ -3,7 +3,9 @@ import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 
+import { apiMiddleware } from './middleware';
 import rootReducer from './reducers';
+
 
 const historyMiddleware = routerMiddleware(browserHistory);
 
@@ -16,14 +18,14 @@ export default () => {
   const store = createStore(
     rootReducer,
     compose(
-      applyMiddleware(
+    applyMiddleware(
+        apiMiddleware,
         thunk,
         historyMiddleware,
       ),
       devTools,
     ),
   );
-  console.log('devTools', devTools);
-  console.log('window', window);
+
   return store;
 };
