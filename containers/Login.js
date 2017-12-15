@@ -23,7 +23,7 @@ class Login extends Component {
     super(props);
 
     const { width, height } = Dimensions.get('window');
-    console.log('promise', Promise);
+
     this.state = {
       email: '',
       username: '',
@@ -59,14 +59,12 @@ class Login extends Component {
       lastName,
     };
     this.props.signIn(account)
-    .then((response) => {
+    .then(() => {
       this.setState({
-        sessionId: response.data.id,
         isAuthenticated: true,
       })
     })
-    .catch((error) => {
-      this.setState({ errors: error.response.data.errors });
+    .catch(() => {
     });
   }
 

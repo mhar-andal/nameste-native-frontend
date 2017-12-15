@@ -33,6 +33,7 @@ export const errorMiddleware = () => {
       return next(action);
     } catch (err) {
       next({ error: err, banner: true, type: 'UNEXPECTED_ERROR' });
+
       throw err;
     }
   };
