@@ -30,6 +30,8 @@
     "react": "16.0.0",
     "react-native": "0.50.3",
     "react-native-debugger-open": "^0.3.15",
+    "react-native-fbsdk": "^0.7.0",
+    "react-native-fbsdklogin": "0.0.8",
     "react-native-redux-router": "^1.0.7",
     "react-native-scripts": "^1.8.1",
     "react-redux": "^5.0.6",
@@ -39,8 +41,13 @@
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0"
   },
-  "plugins": ["react", "react-native"],
+  "plugins": [
+    "react",
+    "react-native"
+  ],
   "rnpm": {
-    "assets": ["./assets/fonts/"]
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
